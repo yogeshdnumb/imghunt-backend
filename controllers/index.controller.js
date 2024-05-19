@@ -47,7 +47,7 @@ exports.leaderboard_get = asyncHandler(async function (req, res, next) {
 exports.leaderboard_post = asyncHandler(async function (req, res, next) {
   const leaderboard = await leaderboardModel.findOne({ gameId: req.params.gameId }, "toppers")
   const tmp_arr = [...leaderboard.toppers]
-  tmp_arr.push({ username: req.body.username, score: req.body.score })
+  tmp_arr.push({ username: req.body.username, score: +req.body.score })
   tmp_arr.sort((a, b) => {
     if (a.score < b.score) { return -1 } else if (a.score > b.score) { return 1 } else { return 0 }
   })
