@@ -9,27 +9,27 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 // Games
 exports.games_get = [asyncHandler(async function (req, res, next) {
   const games = await gameModel.find().populate("img");
-  console.log(games);
+  // console.log(games);
   res.send(games)
 })]
 
 exports.game_get = asyncHandler(async function (req, res, next) {
   // await sleep(1000)
   const game = await gameModel.findOne({ _id: req.params.id }).populate("findables");
-  console.log(game);
+  // console.log(game);
   res.json(game)
 })
 
 // Findables
 exports.findable_get = asyncHandler(async function (req, res, next) {
   const findable = await findableModel.findOne({ _id: req.params.id })
-  console.log(findable);
+  // console.log(findable);
   res.json(findable)
 })
 
 exports.findables_get = asyncHandler(async function (req, res, next) {
   const findables = await findableModel.find({})
-  console.log(findables);
+  // console.log(findables);
   res.json(findables)
 })
 
